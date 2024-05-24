@@ -1,5 +1,5 @@
-env
-go.mod
-go.sum
-Go-JWT.exe
-Go-JWT.exe~
+./.env
+./go.mod
+./go.sum
+./Go-JWT.exe
+./Go-JWT.exe~
