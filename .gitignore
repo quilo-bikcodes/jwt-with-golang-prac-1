@@ -1,5 +1,10 @@
+# Ignore .env file
 .env
-./go.mod
-./go.sum
-./Go-JWT.exe
-./Go-JWT.exe~
+
+# Ignore go.mod and go.sum files
+go.mod
+go.sum
+
+# Ignore Go-JWT executable files
+Go-JWT.exe
+Go-JWT.exe~
