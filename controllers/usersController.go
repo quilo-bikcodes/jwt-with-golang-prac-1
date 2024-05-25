@@ -2,7 +2,10 @@ package controllers
 
 import (
 	"net/http"
+	"os"
+	"time"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/quilo-bikcodes/Go-JWT/initializers"
 	"github.com/quilo-bikcodes/Go-JWT/models"
@@ -82,6 +85,35 @@ func Login (c *gin.Context){
 	}
 
 	//* Compare sent password with saved
+
+	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(body.Password))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Incorrect Password",
+		})
+		return	
+		} 
+
 	//* Generate JWT Token
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"sub": user.ID,
+		"exp": time.Now().Add(time.Hour * 24 * 30).Unix(),
+	})
+	
+	// Sign and get the complete encoded token as a string using the secret
+	tokenString, err := token.SignedString(os.Getenv("SECRET"))
+
+	if err != nil{
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Failed to create Token",
+		})
+		return	
+	}
+
 	//* Send it back
+
+	c.JSON(http.StatusOK, gin.H{
+		"token" : tokenString,
+	})
 }
