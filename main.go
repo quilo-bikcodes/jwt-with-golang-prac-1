@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/quilo-bikcodes/Go-JWT/controllers"
 	"github.com/quilo-bikcodes/Go-JWT/initializers"
 )
 
@@ -13,10 +14,7 @@ func init(){
 
 func main() {
 	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
+	r.POST("/signup", controllers.Signup)
+	
 	r.Run() // listen and serve on 0.0.0.0:8080
 }
