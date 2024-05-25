@@ -14,7 +14,7 @@ import (
 )
 
 func RequireAuth(c *gin.Context) {
-	fmt.Println("\033[38;5;208m","In middleware...","\033[0m")   //Extra Code for Orange Color
+	fmt.Println("\033[38;5;208m","In middleware...","\033[0m")   //Extra Code for Orange Color 
 
 	//* Get the cookie off req body
 
