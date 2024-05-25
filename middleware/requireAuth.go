@@ -22,6 +22,7 @@ func RequireAuth(c *gin.Context) {
 
 	if err != nil{
 		c.AbortWithStatus(http.StatusUnauthorized)
+		return
 	}
 
 	//* Decode-Validate It
@@ -66,5 +67,6 @@ func RequireAuth(c *gin.Context) {
 
 	} else {
 		c.AbortWithStatus(http.StatusUnauthorized)
+		return
 	}
 }
